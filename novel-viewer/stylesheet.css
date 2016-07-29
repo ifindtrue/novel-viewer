@@ -1,0 +1,127 @@
+html{
+	margin:0!important;
+	padding:0!important;
+	width:100%!important;
+	height:100%!important;
+}
+body{
+	margin:0!important;
+	padding:0!important;
+	width:100%!important;
+	height:100%!important;
+	background:#eee;
+}
+*{
+	box-sizing:border-box!important;
+	-webkit-box-sizing:border-box!important;
+	-moz-box-sizing:border-box!important;
+}
+
+#novel-load-section{
+	position:fixed;
+	z-index:1000;
+	width:500px;
+	height:300px;
+	top:50%;
+	margin-top:-150px;
+	left:50%;
+	margin-left:-250px;
+	padding:0px 10px;
+	background:#fff;
+	border:1px solid #d5d5d5;
+	transition:opacity 0.2s;
+	-webkit-transition:opacity 0.2s;
+	-moz-transition:opacity 0.2s;
+}
+
+	#novel-load-section:after{
+		display:block; content:""; clear:both;
+	}
+		#get-novel-input{
+		background:#ddd;
+		padding:6px;
+		}
+		#apply-novel-btn{
+		margin-bottom:3px;
+		}
+		.loading-icon{
+			width:100%;
+			text-align:center;
+		}
+
+.container{
+	position:relative;
+	margin:0 auto;
+	width:800px;
+	padding:50px 0px 0px 0px;
+	min-height:100%;
+	background:#fff;
+	opacity:0;
+	transition:opacity 0.2s;
+	-webkit-transition:opacity 0.2s;
+	-moz-transition:opacity 0.2s;
+	font-family:"맑은 고딕";
+	border-left:1px solid #dfdfdf;
+	border-right:1px solid #dfdfdf;
+}
+	.container .option-wrap{
+		position:absolute;
+		left:0;
+		top:0;
+		width:100%;
+		height:50px;
+		border-bottom:1px solid #dfdfdf;
+	}
+	.container .option-wrap:after{
+	content:""; display:block; clear:both;
+	}
+	.container .option-wrap div{
+	float:left; width:100px; height:50px; line-height:50px;
+	border-right:1px solid #dfdfdf; text-align:center; cursor:pointer;
+	}
+	.container .option-wrap div.active{
+	background:#E6E6E6!important;
+	}
+
+	.container .option-wrap div:hover{
+	background:#eee;
+	border-bottom:1px solid #dfdfdf;
+	}
+	#tool-wrap{
+	display:none;
+	width:100%;
+	height:30px;
+	line-height:30px;
+	background:#f5f5f5;
+	border-bottom:1px dotted #aaa;
+	padding:0 10px;
+	}
+	#tool-wrap div{
+			display:none;
+	}
+	#tool-wrap span{
+		margin-right:10px;
+		cursor:pointer;
+	}
+	#tool-wrap span.active{
+	color:red; font-weight:bold; text-decoration:underline;
+	}
+/*#tool-wrap div{display:none}*/
+#apply-area{
+font-family:"굴림";
+line-height:150%;
+font-size:16px;
+}
+#novel-title{
+	font-size:1.2em;
+	font-weight:bold;
+	margin:10px 10px 0 10px ;
+	border-bottom:1px solid #aaa;
+	padding-bottom:10px;
+}
+pre{
+	word-break:break-all;
+	white-space:pre-wrap;
+	margin:0!important;
+	padding:10px;
+}

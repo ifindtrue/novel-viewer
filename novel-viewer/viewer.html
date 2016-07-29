@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>소설 뷰어</title>
+		<meta charset="utf8">
+		<link href="./stylesheet.css" rel="stylesheet" type="text/css">
+		<link href="./bootstrap-btn.css" rel="stylesheet" type="text/css">
+		<script src="./jquery-3.1.0.min.js"></script>
+	</head>
+	<body>
+		<section id="novel-load-section">
+			<h3>불러올 소설을 선택해주세요. <small style="color:red"> - 텍스트 파일만 허용합니다</small></h3>
+			<hr/>
+			<input type="file" id="get-novel-input" accept="text/*">
+			<button class="btn btn-default" id="apply-novel-btn" disabled>확인</button>
+			<article class="loading-icon">
+			</article>
+		</section>
+		<section class="container">
+			<article class="option-wrap">
+				<div data-type="font">폰트</div>
+				<div data-type="align">정렬</div>
+				<div data-type="line-height">줄간격</div>
+				<div data-type="font-size">글자크기</div>
+			</article>
+			<section id="tool-wrap">
+				<div id="tool-font">
+					<span class="active">굴림</span>
+					<span >굴림체</span>
+					<span>궁서</span>
+					<span>궁서체</span>
+					<span>맑은고딕</span>
+				</div>
+				<div id="tool-align">
+					<span class="active" data-value="left">왼쪽</span>
+					<span data-value="center">가운데</span>
+					<span data-value="right">오른쪽</span>
+				</div>
+				<div id="tool-line-height">
+					<span>50%</span>
+					<span>100%</span>
+					<span class="active">150%</span>
+					<span>200%</span>
+				</div>
+				<div id="tool-font-size">
+					<span>12px</span>
+					<span>13px</span>
+					<span>14px</span>
+					<span>15px</span>
+					<span class="active">16px</span>
+					<span>17px</span>
+					<span>18px</span>
+					<span>19px</span>
+					<span>20px</span>
+				</div>
+			</section>
+			<section id="apply-area">
+				<article id="novel-title"></article>
+				<pre id="novel-content"></pre>
+			</section>
+		</section>
+		<script>
+			var load={
+				section:document.getElementById("novel-load-section"),
+				file:document.getElementById("get-novel-input"),
+				btn:document.getElementById("apply-novel-btn")
+			};
+			load.file.onchange=function(){
+				load.btn.removeAttribute("disabled");
+				load.btn.classList.add("btn-info");
+			}
+			load.btn.onclick=function(){
+				load.btn.setAttribute("disabled","true");
+				load.btn.innerHTML="로딩 중 입니다...";
+
+				var fileList=load.file.files;
+
+				var reader=new FileReader();
+				reader.readAsText(fileList [0]);
+					var novel_content=document.getElementById("novel-content");
+					var container=document.getElementsByClassName("container");
+					var novel_title=document.getElementById("novel-title");
+				reader.onload=function(){
+					load.btn.removeAttribute("disabled");
+					load.btn.innerHTML="확인";
+					novel_title.innerHTML=fileList[0].name;
+					fileList[0].name
+					novel_content.textContent = reader.result;
+					container[0].style.opacity=1;
+					load.section.style.opacity=0;
+				}
+			}
+
+
+			var option_wrap=$(".option-wrap");
+			var tool_wrap=$("#tool-wrap");
+			$(".option-wrap div").click(function(){
+				var type=$(this).attr("data-type");
+				
+				var active=option_wrap.attr("active");
+				$(".option-wrap div[data-type="+active+"]").removeClass("active");
+
+				if(active){
+					$("#tool-"+active).hide();
+					tool_wrap.hide();
+					option_wrap.removeAttr("active");
+				}
+				if(active==type){return}
+
+				tool_wrap.show();
+				$("#tool-"+type).show();
+				option_wrap.attr("active",type);
+				$(this).addClass("active");
+			});
+
+			$("#tool-font span").click(function(){
+				var val=$(this).html();
+				$("#novel-content").css("fontFamily",val);
+				$("#tool-font span[class=active]").removeClass("active");
+				$(this).addClass("active");
+			});
+
+			$("#tool-align span").click(function(){
+				var val=$(this).attr("data-value");
+				$("#apply-area").css("text-align",val);
+				$("#tool-align span[class=active]").removeClass("active");
+				$(this).addClass("active");
+			});
+			$("#tool-line-height span").click(function(){
+				var val=$(this).html();
+				$("#apply-area").css("line-height",val);
+				$("#tool-line-height span[class=active]").removeClass("active");
+				$(this).addClass("active");
+			});
+			$("#tool-font-size span").click(function(){
+				var val=$(this).html();
+				$("#apply-area").css("font-size",val);
+				$("#tool-font-size span[class=active]").removeClass("active");
+				$(this).addClass("active");
+			});
+		</script>
+	</body>
+</html>
