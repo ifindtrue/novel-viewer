@@ -22,6 +22,7 @@
 				<div data-type="align">정렬</div>
 				<div data-type="line-height">줄간격</div>
 				<div data-type="font-size">글자크기</div>
+				<div data-type="padding">패딩</div>
 			</article>
 			<section id="tool-wrap">
 				<div id="tool-font">
@@ -52,6 +53,12 @@
 					<span>18px</span>
 					<span>19px</span>
 					<span>20px</span>
+				</div>
+				<div id="tool-padding">
+					<span>10px</span>
+					<span>20px</span>
+					<span>30px</span>
+					<span>50px</span>
 				</div>
 			</section>
 			<section id="apply-area">
@@ -136,6 +143,12 @@
 				var val=$(this).html();
 				$("#apply-area").css("font-size",val);
 				$("#tool-font-size span[class=active]").removeClass("active");
+				$(this).addClass("active");
+			});
+			$("#tool-padding span").click(function(){
+				var val=$(this).html();
+				$("#novel-content").css("padding",val);
+				$("#tool-padding span[class=active]").removeClass("active");
 				$(this).addClass("active");
 			});
 		</script>
